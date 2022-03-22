@@ -34,6 +34,38 @@ const cadastrarReceita = (
   console.log(`Cadastro da receita ${titulo} feito com sucesso!`);
 };
 
+const btnEnviar = document.querySelector('#btnEnviar');
+
+btnEnviar.onclick = (evento) => {
+  // impede que a pagina seja recarregada / previne comportamento padrão
+  evento.preventDefault();
+
+  // alert('formulario enviado!');
+
+  // selecionando campos do formulário
+  let inputTitulo = document.querySelector('#titulo');
+  let inputDificuldade = document.querySelector('#dificuldade');
+  let inputIngredientes = document.querySelector('#ingredientes');
+  let inputPreparo = document.querySelector('#preparo');
+  let inputLink = document.querySelector('#link');
+  let inputVegano = document.querySelector('input[name="vegano"]:checked');
+
+  let novaReceita = {
+    id: listaDeReceitas.length,
+    titulo: inputTitulo.value,
+    dificuldade: inputDificuldade.value,
+    ingredientes: inputIngredientes.value.split(','),
+    preparo: inputPreparo.value,
+    link: inputLink.value,
+    // vegano: inputVegano.value ? InputVegano.value : 'não'
+  }
+
+  console.log(novaReceita);
+  listaDeReceitas.push(novaReceita);
+}
+
+
+
 function exibirReceitas() {
   for (let index = 0; index < listaDeReceitas.length; index++) {
     const receita = listaDeReceitas[index];
