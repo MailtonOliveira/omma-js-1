@@ -62,27 +62,29 @@ btnEnviar.onclick = (evento) => {
 
   console.log(novaReceita);
   listaDeReceitas.push(novaReceita);
+
+  exibirReceitas();
 }
-
-
 
 function exibirReceitas() {
+
+  let htmlReceitas = '';
+
   for (let index = 0; index < listaDeReceitas.length; index++) {
-    const receita = listaDeReceitas[index];
-    console.log("--------------------------------");
-    console.log("Titulo = " + receita.titulo);
-
-    for (let index = 0; index < receita.ingredientes.length; index++) {
-      const ingrediente = receita.ingredientes[index];
-      console.log("ingredientes = " + ingrediente);
-    }
-
-    console.log("É vegano? " + receita.vegano);
-    console.log("--------------------------------");
+    htmlReceitas += `<article class="card">
+          <h2>${listaDeReceitas[index].titulo}</h2>
+          <small>Dificuldade: ${listaDeReceitas[index].dificuldade}</small>
+          <p> ${listaDeReceitas[index].preparo}</p>
+      </article>`;
   }
+
+  let painelReceitas = document.querySelector('.painel-receitas');
+
+  painelReceitas.innerHTML = htmlReceitas;
+
 }
 
-// exibirReceitas();
+exibirReceitas();
 
 function deletarReceita(id) {
   let novaListaDeReceitas = [];
